@@ -1,31 +1,54 @@
-// import Button from "./Button";
-// import styles from "./App.module.css"
-import { useState, useEffect } from 'react';
 
-function Hello(){
-  useEffect(()=>{
-    console.log('created :)');
-    return ()=> console.log("destory :(");
-  },[]);
-  return <h1>Hello</h1>;
-}
-
+import {useState, useEffect} from "react";
 function App() {
-<<<<<<< HEAD
-  const [showing, setShowing] = useState(false);
-  const onClick = ()=>setShowing((prev)=>!prev);
-=======
-  const [todo,setTodo] = useState("");
->>>>>>> 9999f595ca32e3eceaadec2be3f6b1bdc41f99c0
-  return (
+  const [loading,setLoading] = useState(true);
+  const [coins,setCoins] = useState([]);
+  const [userDollar, setUserDollar] = useState(0);
 
+  const onChange = (event)=>{
+    event.preventDefault();
+    setUserDollar(event.target.value);
+  };
+  useEffect (()=>{
+    fetch ("https://api.coinpaprika.com/v1/tickers")
+    .then((response)=>response.json())
+    .then((json)=>{
+      setCoins(json);
+      setLoading(false);
+    });
+  },[]);
+  return (
     <div>
-<<<<<<< HEAD
-      {showing ? <Hello/> : null}
-      <button onClick={onClick}>{showing ? "Hide" : "Show"}</button>
-=======
-      <input type="text" placeholder="Write your to do...."/>
->>>>>>> 9999f595ca32e3eceaadec2be3f6b1bdc41f99c0
+      <h1>The Coins! {loading ? "" : `(number of coins : ${coins.length})`}</h1>
+      <div>
+        {/* <form onSubmit={onChange}> */}
+        <label htmlFor="dollar"><strong>input your dollar :</strong></label>
+        <input
+          id = "dollar"
+          placeholder='input your USD'
+          type="number"
+          value = {userDollar}
+          onChange={onChange}
+        />
+         {/* <button>convert to coin</button> */}
+        {/* </form> */}
+      </div>
+      <h3>{userDollar <= 0 ? "Each coin per dollar" :`The value of your ${userDollar}$ in coins` }</h3>
+      {loading ? <strong>Loading....</strong> :
+        userDollar <= 0 ?  <select>
+        {coins.map((coin)=>(
+        <option key={coin.rank}>
+          {coin.name} ({coin.symbol}) : {coin.quotes.USD.price}
+        </option>
+        ))}
+      </select>
+        :<select>
+        {coins.map((coin)=>(
+        <option key={coin.rank}>
+          {coin.name} ({coin.symbol}) : {userDollar *  1 /coin.quotes.USD.price}
+        </option>
+        ))}
+      </select>}
     </div>
   );
 }

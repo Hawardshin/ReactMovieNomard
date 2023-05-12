@@ -10,20 +10,29 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
    <script type ="text/babel">
 
-    const root= document.getElementById("root");
     function App(){
-      const [counter, setCounter] = React.useState(0);
-      const OnClick = ()=>{
-        // counter =counter+1;
-        // console.log(counter);
-        setCounter(counter+1);
+      const [minutes, setMinutes] = React.useState();
+      const onChange = (event) =>{
+        setMinutes(event.target.value);
       };
-    return (
-      <div>
-        <h3> Total Clicks :{counter} </h3>
-        <button onClick={OnClick}>Click me</button>
-      </div>);
+      return (
+        <div>
+          <h1 className="hi">Super Converter</h1>
+          <label htmlFor="minutes"> Minutes </label>
+          <input
+            value = {minutes}
+            id="minutes"
+            placeholder="Minutes"
+            type ="number"
+            onChange = {onChange}
+            />
+            <h4> You want to convert {minutes} </h4>
+          <label htmlFor="hours"> Hour </label>
+          <input id = "hours"placeholder="Hours" type= "number" />
+        </div>
+      )
     }
+    const root= document.getElementById("root");
     ReactDOM.render(<App/>,root);
    </script>
 </html>
