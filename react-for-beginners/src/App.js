@@ -2,55 +2,35 @@
 import {useState, useEffect} from "react";
 function App() {
   const [loading,setLoading] = useState(true);
-  const [coins,setCoins] = useState([]);
-  const [userDollar, setUserDollar] = useState(0);
-
-  const onChange = (event)=>{
-    event.preventDefault();
-    setUserDollar(event.target.value);
+  const [movies, setMovies] = useState([]);
+  const getMovies = async()=>{
+  const json = await(await fetch(
+      `https://yts.mx/api/v2/list_movies.json?minimum_rating=8.8&sort_by=year`)).json();
+    setMovies(json.data.movies);
+    setLoading(false);
   };
-  useEffect (()=>{
-    fetch ("https://api.coinpaprika.com/v1/tickers")
-    .then((response)=>response.json())
-    .then((json)=>{
-      setCoins(json);
-      setLoading(false);
-    });
-  },[]);
-  return (
+  useEffect(()=>{
+    getMovies();
+  },[])
+  console.log(movies)
+  return <div>
+    {loading? <h1>Loading..</h1> : (
     <div>
-      <h1>The Coins! {loading ? "" : `(number of coins : ${coins.length})`}</h1>
-      <div>
-        {/* <form onSubmit={onChange}> */}
-        <label htmlFor="dollar"><strong>input your dollar :</strong></label>
-        <input
-          id = "dollar"
-          placeholder='input your USD'
-          type="number"
-          value = {userDollar}
-          onChange={onChange}
-        />
-         {/* <button>convert to coin</button> */}
-        {/* </form> */}
+      {movies.map((movie)=>(
+        <div key ={movie.id}>
+          <img src={movie.medium_cover_image}/>
+          <h2>{movie.title}</h2>
+          <p>{movie.summary}</p>
+          <ul>
+            {movie.genres.map((g)=>(
+              <li key={g}>{g}</li>
+              ))}
+          </ul>
+        </div>
+        ))}
       </div>
-      <h3>{userDollar <= 0 ? "Each coin per dollar" :`The value of your ${userDollar}$ in coins` }</h3>
-      {loading ? <strong>Loading....</strong> :
-        userDollar <= 0 ?  <select>
-        {coins.map((coin)=>(
-        <option key={coin.rank}>
-          {coin.name} ({coin.symbol}) : {coin.quotes.USD.price}
-        </option>
-        ))}
-      </select>
-        :<select>
-        {coins.map((coin)=>(
-        <option key={coin.rank}>
-          {coin.name} ({coin.symbol}) : {userDollar *  1 /coin.quotes.USD.price}
-        </option>
-        ))}
-      </select>}
-    </div>
-  );
+      )}
+  </div>;
 }
 
 export default App;
