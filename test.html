@@ -9,30 +9,32 @@
     <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
    <script type ="text/babel">
-
+     function Btn({text,big}){
+      //  console.log(props);
+       return (
+         <button
+         style={{
+          backgroundColor : "tomato",
+          color : "white",
+          padding : "10px, 20px",
+          border :0,
+          borderRadius : 10,
+          fontSize : big ? 18 :14 ,
+         }}
+         >
+         {text}
+         </button>
+       );
+     }
     function App(){
-      const [minutes, setMinutes] = React.useState();
-      const onChange = (event) =>{
-        setMinutes(event.target.value);
-      };
       return (
         <div>
-          <h1 className="hi">Super Converter</h1>
-          <label htmlFor="minutes"> Minutes </label>
-          <input
-            value = {minutes}
-            id="minutes"
-            placeholder="Minutes"
-            type ="number"
-            onChange = {onChange}
-            />
-            <h4> You want to convert {minutes} </h4>
-          <label htmlFor="hours"> Hour </label>
-          <input id = "hours"placeholder="Hours" type= "number" />
+          <Btn text = "Save Changes" big ={true} />
+          <Btn text = "continue"big ={false} />
         </div>
       )
     }
-    const root= document.getElementById("root");
+    const root = document.getElementById("root");
     ReactDOM.render(<App/>,root);
    </script>
 </html>
