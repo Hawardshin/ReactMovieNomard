@@ -1,0 +1,43 @@
+.pic {
+  position : relative;
+  display : block;
+  float: left
+}
+
+.pic span{
+  position: absolute;
+  right: 10px;
+  bottom : 70px;
+  width: 60px;
+  height: 25px;
+  background: #c60000;
+  font-size:12px;
+  color:#fff;
+  line-height: 25px;
+  text-align :center;
+}
+
+.title{
+  font-size: 20px;
+  position : absolute;
+  top :25px;
+  left : 5px;
+  background-color: rgba(255, 0, 0, 0.34);
+  color : rgba(106, 0, 0, 0.988);
+  border: 1px solid black;
+  border-radius: 100px 200px 300px 400px;
+}
+
+.gallery {
+  height: 60px;
+  border : 1px solid #ddd;
+  padding : 20px 30px 10px;
+}
+
+.gallery li {
+  padding: 0 0 10px 1px;
+  width: 100px;
+  font-size : 11px; color :#333;
+  line-height: 100%;
+}
+
