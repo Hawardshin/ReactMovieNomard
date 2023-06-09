@@ -54,7 +54,9 @@ function Movie({id,coverImage,title,summary,genres}){
       return null; // 홀수 인덱스의 경우에는 빈 요소 반환
     })}
   </ul>
+  <Link to={`/movie/${id}`}>
     <span>Detail</span>
+    </Link>
   </div>
   );
 }

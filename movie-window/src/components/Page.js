@@ -3,18 +3,23 @@ import {Link} from "react-router-dom";
 import altImage from "../assets/noMoive.png";
 import { useState } from "react";
 import style from "./page.module.css";
-function Page({title, genres,description,synopsis,background_image,poster}){
+
+const handleImageError = (event) => {
+  event.target.src = altImage;
+  event.target.style = "width:40"
+};
+function Page({title, genres,description,synopsis,background_image,poster,url}){
 
   return (
     <div className={style.screen}>
       <a className= {style.background_image}>
         <img src= {background_image}/>
-        <div className={style.poster}>
-         <img src= {poster}/>
-        </div>
         <h1 className={style.title}>{title}</h1>
+        <div className={style.poster}>
+         <img src= {poster} onError={handleImageError}/>
+        </div>
         <div className={style.genres}>
-          <h3>genres</h3>
+          <h1>genres</h1>
           {genres.map((each,idx)=>{
             return (
             <li key={idx}>
@@ -29,12 +34,17 @@ function Page({title, genres,description,synopsis,background_image,poster}){
         <div className={style.synopsis}>
           <h3>synopsis</h3>
           {synopsis}
+          <a href = {url}>
+            more detail
+          </a>
         </div>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
       </a>
     </div>
   );
-
-
 };
 
 export default Page;

@@ -31,6 +31,7 @@ function Detail(){
       synopsis = {movie.synopsis}
       background_image = {movie.background_image}
       poster = {movie.large_cover_image}
+      url = {movie.url}
      />
     )}
   </div>
