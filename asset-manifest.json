@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/ReactMovieNomard.git/static/css/main.6320c3da.css",
-    "main.js": "/ReactMovieNomard.git/static/js/main.95151717.js",
-    "static/media/noMoive.png": "/ReactMovieNomard.git/static/media/noMoive.08de4ff9073cfe2f56b3.png",
-    "static/media/spinner.gif": "/ReactMovieNomard.git/static/media/spinner.fe0d0718ae075e8b10c1.gif",
-    "index.html": "/ReactMovieNomard.git/index.html",
-    "main.6320c3da.css.map": "/ReactMovieNomard.git/static/css/main.6320c3da.css.map",
-    "main.95151717.js.map": "/ReactMovieNomard.git/static/js/main.95151717.js.map"
+    "main.css": "/ReactMovieNomard/static/css/main.6320c3da.css",
+    "main.js": "/ReactMovieNomard/static/js/main.f6828225.js",
+    "static/media/noMoive.png": "/ReactMovieNomard/static/media/noMoive.08de4ff9073cfe2f56b3.png",
+    "static/media/spinner.gif": "/ReactMovieNomard/static/media/spinner.fe0d0718ae075e8b10c1.gif",
+    "index.html": "/ReactMovieNomard/index.html",
+    "main.6320c3da.css.map": "/ReactMovieNomard/static/css/main.6320c3da.css.map",
+    "main.f6828225.js.map": "/ReactMovieNomard/static/js/main.f6828225.js.map"
   },
   "entrypoints": [
     "static/css/main.6320c3da.css",
-    "static/js/main.95151717.js"
+    "static/js/main.f6828225.js"
   ]
 }
